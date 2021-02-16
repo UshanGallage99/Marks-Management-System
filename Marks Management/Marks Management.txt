@@ -1,0 +1,323 @@
+import java.util.*;
+
+class Example{
+	  public final static void clearConsole() {
+		    try {
+			final String os = System.getProperty("os.name");
+			if (os.contains("Windows")) {
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
+				} else {
+					System.out.print("\033[H\033[2J");
+					System.out.flush();
+				}																                                                 } 
+				catch (final Exception e) {
+			        e.printStackTrace();             
+			        //  Handle any exceptions.
+		         }    
+		    }
+
+	public static int findNextindex(String[][] ar){
+		int nextIndex=ar.length-1;
+		for(int i=0;i<ar.length;i++){
+			if(ar[i]==null){
+				nextIndex=i;
+			}
+		}
+		return nextIndex;
+	}
+	
+	public static boolean validateID(String id,String [][] ar){
+		for(int i=0;i<ar.length;i++){
+			if(ar[i][0]!=null && ar[i][0].equals(id)){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	public static void addNewstu (String [][] ar){
+		clearConsole();
+		Scanner input=new Scanner(System.in);
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                                ADD NEW STUDENT                                      |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("");
+		
+		char ch='n';
+		String id;
+		boolean b=true;
+		do{
+			for(int i=0;i<ar.length;i++){
+				do{
+		System.out.print("Enter The Student ID : ");
+		id=input.next();
+		//b=validateID(id,ar);
+		i=findNextindex(ar);
+		b=validateID(id,ar);
+		if(b){
+		 	ar[i][0]=id;
+		 }else{
+						System.out.println("The Student ID already exists.");
+					}
+				}while(b==false);
+		System.out.print("Enter The Student Name : ");
+		ar[i][1]=input.next();
+		
+		System.out.println("");
+		
+		System.out.print("Student has been added successfully.Do you want to add a new student(y\\n) :");
+		ch=input.next().charAt(0);
+		System.out.println("");
+		ar[i][0]=id;
+	}
+	}
+	while(ch=='y');
+	clearConsole();
+	main(null);
+	 
+		
+	}
+	
+		public static void addNewstuM (String [][] ar){
+		clearConsole();
+		Scanner input=new Scanner(System.in);
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                             ADD NEW STUDENT WITH MARKS                              |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("");
+		
+		char ch='n';
+		int marks=0;
+		do{
+			for(int i=0;i<ar.length;i++){
+		System.out.print("Enter The Student ID : ");
+		i=findNextindex(ar);
+		ar[i][0]=input.next();
+		System.out.print("Enter The Student Name : ");
+		ar[i][1]=input.next();
+		
+		do{
+		System.out.print("Programming Fundamentals Marks  : ");
+		ar[i][2]=input.next();
+		marks=Integer.parseInt(ar[i][2]);
+		if(marks>100||marks<0){
+			System.out.println("Invalid Marks,Please Enter Correct Marks.");
+			System.out.println(""); 
+			}
+		}while(marks>100||marks<0);
+		
+		do{
+		System.out.print("Database Management System Marks  : ");
+		ar[i][3]=input.next();
+		marks=Integer.parseInt(ar[i][3]);
+		if(marks>100||marks<0){
+			System.out.println("Invalid Marks,Please Enter Correct Marks.");
+			System.out.println("");
+			}
+		}while(marks>100||marks<0);
+		
+		System.out.print("Student has been added successfully.Do you want to add a new student(y\\n) :");
+		ch=input.next().charAt(0);
+		System.out.println("");
+	}
+	}
+	while(ch=='y');
+	clearConsole();
+	main(null);
+	 
+		
+	}
+	
+		public static void addMarks (String [][] ar){
+		clearConsole();
+		Scanner input=new Scanner(System.in);
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                                      ADD MARKS                                      |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		
+		char ch='n';
+		int marks=0;
+		do{
+			for(int i=0;i<ar.length;i++){
+		System.out.print("Enter The Student ID : ");
+		ar[i][0]=input.next();
+		String key=ar[i][0];
+		for (i = 0; i <ar.length; i++){
+			if(ar[i][0]==key){
+				System.out.println("Student Name : "+ar[i][1]);
+			}
+		}
+		
+		do{
+		System.out.print("Programming Fundamentals Marks  : ");
+		ar[i][2]=input.next();
+		marks=Integer.parseInt(ar[i][2]);
+		if(marks>100||marks<0){
+			System.out.println("Invalid Marks,Please Enter Correct Marks.");
+			System.out.println(""); 
+			}
+		}while(marks>100||marks<0);
+		
+		do{
+		System.out.print("Database Management System Marks  : ");
+		ar[i][3]=input.next();
+		marks=Integer.parseInt(ar[i][3]);
+		if(marks>100||marks<0){
+			System.out.println("Invalid Marks,Please Enter Correct Marks.");
+			System.out.println("");
+			}
+		}while(marks>100||marks<0);
+		
+		System.out.print("Student has been added successfully.Do you want to add a new student(y\\n) :");
+		ch=input.next().charAt(0);
+		System.out.println("");
+	}
+	}
+	while(ch=='y');
+	clearConsole();
+	main(null);
+	 
+		
+	}
+	
+	public static void updateDetails (String [][] ar){
+		Scanner input =new Scanner (System.in);
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                                 UPDATE STUDENT DETAILS                              |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		char ch='n';	
+		do{
+			for(int i=0;i<ar.length;i++){
+				System.out.print("Enter Student ID    :  ");
+				ar[i][0]=input.next();
+				System.out.println("Student Name  :  ");
+				System.out.print("Enter the new student name  :  ");
+				ar[i][1]=input.next();
+				System.out.print("Student details has been updated successfully. Do you want to update another student (y\\n) : ");
+				ch=input.next().charAt(0);
+			}
+		}
+		while(ch=='y');
+		clearConsole();
+		main(null);
+		
+	}
+	
+	public static void updateMarks (String [][] ar){
+		Scanner input =new Scanner (System.in);
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                                   UPDATE MARKS                                      |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		char ch='n';
+		int marks=0;
+		do{
+			for(int i=0;i<ar.length;i++){
+				System.out.print("Enter Student ID    : ");
+				ar[i][0]=input.next();
+				do{
+					System.out.print("Enter New Programming Fundamental Marks    : ");
+					ar[i][2]=input.next();
+					marks=Integer.parseInt(ar[i][2]);
+					if(marks>100 || marks<0){
+						System.out.println("Invalid Marks, Please Enter Correct Marks.");
+					}
+				}
+				while (marks>100 || marks<0);
+				do{
+					System.out.print("Enter new Database Management System Marks : ");
+					ar[i][3]=input.next();
+					marks=Integer.parseInt(ar[i][3]);
+					if(marks>100 || marks<0){
+						System.out.println("Invalid Marks, Please Enter Correct Marks.");
+					}
+				}
+				while (marks>100 || marks<0);
+				System.out.print("Marks have been added successfully.Do you want to update marks for a new student (y\\n) : ");
+				ch=input.next().charAt(0);
+			}	
+		}
+		while(ch=='y');
+		clearConsole();
+		main(null);
+	}
+	
+		public static void deleteStu (String [][] ar){
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                                    DELETE STUDENT                                   |");
+		System.out.println("---------------------------------------------------------------------------------------");
+	}
+	
+	public static void printStudetails (String [][] ar){
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                               PRINT STUDENT DETAILS                                 |");
+		System.out.println("---------------------------------------------------------------------------------------");
+	}
+	
+	public static void printSturanks (String [][] ar){
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                               PRINT STUDENT RANKS                                   |");
+		System.out.println("---------------------------------------------------------------------------------------");
+	}
+	
+	public static void bestPf (String [][] ar){
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                           BEST IN POGRAMMING FUNDAMENTALS                           |");
+		System.out.println("---------------------------------------------------------------------------------------");
+	}
+	
+	public static void bestDBMs (String [][] ar){
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                         BEST IN DATABASE MANAGEMENT SYSTEM                          |");
+		System.out.println("---------------------------------------------------------------------------------------");
+	}
+	
+	
+	public static void main(String args[]){
+		Scanner input=new Scanner(System.in);
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("|                      WELCOME TO GDSE MARKS MANAGEMENT SYSTEM                        |");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("[1] Add New Student				[2] Add New Student With Marks");
+		System.out.println("[3] Add Marks 					[4] Update Student Details ");
+		System.out.println("[5] Update Marks 				[6] Delete Student ");
+		System.out.println("[7] Print Student Details 			[8] Print Student Ranks ");
+		System.out.println("[9] Best in Programming Fundamentals  		[10] Best in Database Management System ");
+		System.out.println("");
+		
+		System.out.print("Enter an option to continue >");
+		int x=input.nextInt();
+		int a=0;
+		String ar[][]=new String[a+1][4];
+			if(x==1){
+				addNewstu(ar);
+			}else if(x==2){
+				addNewstuM(ar);
+			}else if(x==3){
+				addMarks(ar);
+			}else if(x==4){
+				updateDetails(ar);
+			}else if(x==5){
+				updateMarks(ar);
+			}else if(x==6){
+				deleteStu(ar);
+			}else if(x==7){
+				printStudetails(ar);
+			}else if(x==8){
+				printSturanks(ar);
+			}else if(x==9){
+				bestPf(ar);
+			}else if(x==10){
+				bestDBMs(ar);
+			}else
+				System.out.println("Invalid Number.Please Enter The Correct Option.");
+	}
+}
